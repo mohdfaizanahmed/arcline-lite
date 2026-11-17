@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   ARCLINE DESIGN TOKENS
+   --------------------------------------------------------------------------
+   Rebrand the whole template by editing the values in `:root` (light) and
+   `.dark` (dark). Every component reads from these variables — you should
+   never need to hunt for hard-coded colors.
+
+   Variable names follow the shadcn/ui convention, so any component you add
+   with `npx shadcn add <component>` inherits the Arcline theme automatically.
+   ========================================================================== */
+
+:root {
+  /* Brand ---------------------------------------------------------------- */
+  --primary: #5847f5; /* Electric indigo — buttons, links, highlights   */
+  --primary-foreground: #ffffff;
+  --brand-violet: #a78bfa; /* Soft violet — gradients & secondary accents */
+  --brand-glow: rgb(88 71 245 / 0.18); /* Hero / CTA glow                  */
+  --avatar-shade: #241a6b; /* Avatars mix --primary toward this (keeps white initials readable) */
+
+  /* Surfaces ------------------------------------------------------------- */
+  --background: #fafafc; /* Warm white page background                  */
+  --foreground: #0f1427; /* Deep navy text                              */
+  --card: #ffffff;
+  --card-foreground: #0f1427;
+  --popover: #ffffff;
+  --popover-foreground: #0f1427;
+  --muted: #f1f1f6;
+  --muted-foreground: #5a6075;
+  --secondary: #f1f1f6;
+  --secondary-foreground: #0f1427;
+  --accent: #efedff; /* Subtle indigo tint for hovers / badges          */
+  --accent-foreground: #3d2fd0;
+  --inverse: #0f1427; /* High-contrast panels (featured plan, CTA)   */
+  --inverse-foreground: #f6f6fb;
+
+  /* Lines & focus -------------------------------------------------------- */
+  --border: #e5e5ee;
+  --input: #dedee8;
+  --ring: #5847f5;
+
+  /* Feedback ------------------------------------------------------------- */
+  --destructive: #e5484d;
+  --success: #087466;
+
+  /* Data visualisation --------------------------------------------------- */
+  --chart-1: #5847f5;
+  --chart-2: #9b6cf0;
+  --chart-3: #0e8f80;
+  --chart-4: #c57a06;
+  --chart-5: #e5484d;
+
+  /* Shape ---------------------------------------------------------------- */
+  --radius: 0.75rem; /* 12px base — cards use radius-xl (≈17px)          */
+
+  /* Sidebar (dashboard) -------------------------------------------------- */
+  --sidebar: #f6f6fa;
+  --sidebar-foreground: #0f1427;
+  --sidebar-primary: #5847f5;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ececf4;
+  --sidebar-accent-foreground: #0f1427;
+  --sidebar-border: #e5e5ee;
+  --sidebar-ring: #5847f5;
+}
+
+.dark {
+  --primary: #6c5cff;
+  --primary-foreground: #ffffff;
+  --brand-violet: #b9a3ff;
+  --brand-glow: rgb(108 92 255 / 0.28);
+  --avatar-shade: #241a6b;
+
+  --background: #090a12;
+  --foreground: #ecedf5;
+  --card: #10121d;
+  --card-foreground: #ecedf5;
+  --popover: #10121d;
+  --popover-foreground: #ecedf5;
+  --muted: #161927;
+  --muted-foreground: #9196ad;
+  --secondary: #171a29;
+  --secondary-foreground: #ecedf5;
+  --accent: #1d1b3d;
+  --accent-foreground: #c9c2ff;
+  --inverse: #ecedf5;
+  --inverse-foreground: #0f1427;
+
+  --border: rgb(255 255 255 / 0.08);
+  --input: rgb(255 255 255 / 0.12);
+  --ring: #7d6fff;
+
+  --destructive: #f2555a;
+  --success: #2ec4b0;
+
+  --chart-1: #7d6fff;
+  --chart-2: #9a7cf0;
+  --chart-3: #1b9686;
+  --chart-4: #bd821a;
+  --chart-5: #f2555a;
+
+  --sidebar: #0d0f19;
+  --sidebar-foreground: #ecedf5;
+  --sidebar-primary: #6c5cff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #171a29;
+  --sidebar-accent-foreground: #ecedf5;
+  --sidebar-border: rgb(255 255 255 / 0.08);
+  --sidebar-ring: #7d6fff;
+}
+
+@theme inline {
+  /* Typography — fonts are loaded in src/app/layout.tsx */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-inverse: var(--inverse);
+  --color-inverse-foreground: var(--inverse-foreground);
+  --color-brand-violet: var(--brand-violet);
+  --color-brand-glow: var(--brand-glow);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --shadow-soft: 0 1px 2px rgb(15 20 39 / 0.04), 0 8px 24px -8px rgb(15 20 39 / 0.08);
+  --shadow-float: 0 1px 2px rgb(15 20 39 / 0.04), 0 24px 64px -16px rgb(15 20 39 / 0.18);
+}
+
+/* Page container — one place to change the site's max width & gutters. */
+@utility container-page {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Faint blueprint grid used behind hero / CTA panels. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    @apply bg-primary/20;
+  }
+  /* Smooth open/close for native <details> accordions (progressive). */
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 0.3s ease,
+      content-visibility 0.3s ease allow-discrete;
+  }
+  details[open]::details-content {
+    block-size: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    details::details-content {
+      transition: none;
+    }
+  }
+}
+
+:root {
+  interpolate-size: allow-keywords;
+}
